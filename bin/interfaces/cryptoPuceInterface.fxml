@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="501.0" prefWidth="165.0" style="-fx-background-color: a9a9a9;">
+         <children>
+            <Accordion layoutY="35.0" prefHeight="466.0" prefWidth="170.0">
+              <panes>
+                <TitledPane animated="false" prefHeight="310.0" prefWidth="163.0" text="Card">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;">
+                           <children>
+                              <Spinner editable="true" layoutX="12.0" layoutY="14.0" prefHeight="26.0" prefWidth="144.0" />
+                              <Label layoutX="14.0" layoutY="67.0" text="parametre 1" />
+                              <Label layoutX="12.0" layoutY="120.0" text="parametre 2" />
+                              <TextField layoutX="1.0" layoutY="85.0" prefHeight="26.0" prefWidth="164.0" promptText="Valeur 2" />
+                              <TextField layoutX="-1.0" layoutY="151.0" promptText="Valeur 2" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Bank">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;" />
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Certificate Agency">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;" />
+                  </content>
+                </TitledPane>
+                  <TitledPane prefHeight="369.0" prefWidth="170.0" text="Marchand">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;" />
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+            <Label layoutX="17.0" layoutY="2.0" style="-fx-font-size: 20; -fx-font-family: Tahoma;" text="Configuration" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="170.0" prefHeight="501.0" prefWidth="631.0">
+         <children>
+            <TabPane prefHeight="501.0" prefWidth="631.0" style="-fx-background-color: 808080;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Step 1">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Pictures/credit_card_front.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Step 2">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: 808080;" />
+                  </content>
+                </Tab>
+                  <Tab text="Step 3">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="620.0" />
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
