@@ -43,6 +43,7 @@ class RSAKeys {
         this.debug = false;
         this.keyfactory = KeyFactory.getInstance("RSA");
     }
+    
     RSAKeys() throws NoSuchAlgorithmException {
         init();
     }
@@ -67,15 +68,23 @@ class RSAKeys {
      * String fileName  (name of file without extension)
      * */
     public Boolean save(String fileName) throws FileNotFoundException, IOException { //***********note you need to treat exception and return false in case of an exception */
-        FileOutputStream out = new FileOutputStream(fileName + ".key");
-        out.write(this.privateKey.getEncoded());
-        out.close();
+        // trycatch it's added
+    	try {
+        	FileOutputStream out = new FileOutputStream(fileName + ".key");
+	        out.write(this.privateKey.getEncoded());
+	        out.close();
+	
+	        out = new FileOutputStream(fileName + ".pub.key");
+	        out.write(this.publicKey.getEncoded());
+	        out.close();
+	        
+	        return true;
+        } catch (Exception e) {
+        	return false;
+        }
+    	
 
-        out = new FileOutputStream(fileName + ".pub.key");
-        out.write(this.publicKey.getEncoded());
-        out.close();
-
-        return true;
+        
     }
 
     /**
@@ -185,7 +194,8 @@ class RSAKeys {
         System.err.println("Public key format: " + this.publicKey.getFormat());
         // prints "Public key format: X.509" on my machine
     }
-
+    
+    //----------------------------------BASE 64--------------------------------------------------
     public String getBase64PublicKeyRepresentation() {
         Base64.Encoder encoder = Base64.getEncoder();
         String base64PublicKeyRep_str = "";
@@ -286,40 +296,42 @@ class RSAKeys {
 public class MyRSAKeys {
 
     public static void main(String[] argv) throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeySpecException {
-        //generating test
-        // RSAKeys rsakey = new RSAKeys();
-        // rsakey.generatePaire(2048);
-        // System.out.println(rsakey.getBase64privateKeyRepresentation());
-        // System.out.println("---------------");
-        // System.out.println(rsakey.getBase64PublicKeyRepresentation());
-        // rsakey.save("test","./Keys");
+        // //__________________________________generating test________________________________
+         /*RSAKeys rsakey = new RSAKeys();
+         rsakey.generatePaire(2048);
+         System.out.println(rsakey.getBase64privateKeyRepresentation());
+         System.out.println("---------------");
+         System.out.println(rsakey.getBase64PublicKeyRepresentation());
+         rsakey.save("test","./Keys");
+*/
 
+        // // ___________________________________loading test__________________________________
+    	
+         RSAKeys rsakey = new RSAKeys("test", "./Keys");//load private and public keys from files .key and .pub.key
+         //System.out.println(rsakey.getPublicKey().getEncoded());
+         System.out.println(rsakey.getBase64privateKeyRepresentation());
+         System.out.println("---------------");
+         System.out.println(rsakey.getBase64PublicKeyRepresentation());
 
-        // // loading test
-        // RSAKeys rsakey = new RSAKeys("test", "./Keys");
-        // System.out.println(rsakey.getBase64privateKeyRepresentation());
-        // System.out.println("---------------");
-        // System.out.println(rsakey.getBase64PublicKeyRepresentation());
+        // // //____________________________________ saving base64_____________________________
+         //rsakey.saveBase64("test","./Keys");
 
-        // // // saving base64
-        // rsakey.saveBase64("test","./Keys");
-
-        //loading only publicKey
-        // RSAKeys rsakey = new RSAKeys();
-        // rsakey.loadPublicKey("./Keys/test.pub.key");
-        // System.out.println(rsakey.getBase64PublicKeyRepresentation());
-
-        // //loading base64
-    	/**
-    	 * RSAKeys rsakey = new RSAKeys();
+        // // __________________________________loading only publicKey___________________________
+    	/*
+         RSAKeys rsakey = new RSAKeys();
+         rsakey.loadPublicKey("./Keys/test.pub.key");
+         System.out.println(rsakey.getBase64PublicKeyRepresentation());
+*/
+        // //__________________________________________loading base64__________________________________
+    	/*
+    	 RSAKeys rsakey = new RSAKeys();
         rsakey.loadBase64("test", "./Keys");
         System.out.println(rsakey.getBase64privateKeyRepresentation());
         System.out.println("---------------");
         System.out.println(rsakey.getBase64PublicKeyRepresentation());
-    	 * 
-    	 * 
-    	 * 
-    	 * */
+        */
         
+        
+    	 
     }
 }
