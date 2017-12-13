@@ -29,10 +29,10 @@ public class RSA {
      * @param key a public RSA key
      * @return ciphertext
      */
-    public static byte[] encrypt(String plaintext, PublicKey key){
+    public static byte[] encrypt(String plaintext, Key key){
         byte[] ciphertext = null;
         try {
-            Cipher cipher = Cipher.getInstance("RSA/ECB/OASP");
+            Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             ciphertext = cipher.doFinal(plaintext.getBytes());
         } catch (Exception e) {
@@ -47,10 +47,10 @@ public class RSA {
      * @param key a private RSA key
      * @return plaintext
      */
-    public static String decrypt(byte[] ciphertext, PrivateKey key){
+    public static String decrypt(byte[] ciphertext, Key key){
         byte[] plaintext = null;
         try {
-            Cipher cipher = Cipher.getInstance("RSA/ECB/OASP");
+            Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, key);
             plaintext = cipher.doFinal(ciphertext);
         } catch (Exception e) {
@@ -67,32 +67,16 @@ public class RSA {
     	String msg="mehdi moi",res="";
     	
     	kp=generateKeyPair();
-    	System.out.println("keypair.toString() : "+kp.toString());
-    	System.out.println("keypair.hashCode() : "+kp.hashCode());
     	
-    	System.out.println("keypair.getPrivate() : "+kp.getPrivate());
-    	System.out.println("keypair.getPrivate().getAlgorithm() : "+kp.getPrivate().getAlgorithm());
-    	System.out.println("keypair.getPrivate().getFormat() : "+kp.getPrivate().getFormat());
-    	System.out.println("keypair.getPrivate().hashCode() : "+kp.getPrivate().hashCode());
-    	System.out.println("keypair.getPrivate().toString() : "+kp.getPrivate().toString());
-    	
-    	System.out.println("keypair.getPublic() : "+kp.getPublic());
-    	System.out.println("keypair.getPublic().getAlgorithm() : "+kp.getPublic().getAlgorithm());
-    	System.out.println("keypair.getPublic().getFormat() : "+kp.getPublic().getFormat());
-    	System.out.println("keypair.getPublic().hashCode() : "+kp.getPublic().hashCode());
-    	System.out.println("keypair.getPublic().toString() : "+kp.getPublic().toString());
-    	
-		code=encrypt(msg, kp.getPublic());
-		//System.out.println("code.toString() : "+code.toString());
-		//System.out.println("code.hashCode() : "+code.hashCode());
-		//System.out.println("code.length : "+code.length);
-		//System.out.println("code.getClass() : "+code.getClass());
-		
-		res=decrypt(code, kp.getPrivate());
-		System.out.println("résultat.toString() : "+res.toString());
-		System.out.println("résultat.hashCode() : "+res.hashCode());
-		System.out.println("résultat.length : "+res.length());
-		System.out.println("résultat.getClass() : "+res.getClass());
+    	System.out.println("msg : "+msg);
+    	System.out.println("### BEGIN ENCRYPTION ###");
+		code=encrypt(msg, kp.getPrivate());
+		System.out.println("### END ENCRYPTION ###");
+		System.out.println("code : "+code);
+		System.out.println("### BEGIN DECRYPTION ###");
+		res=decrypt(code, kp.getPublic());
+		System.out.println("### END DECRYPTION ###");
+		System.out.println("res : "+res);
 		
 		
 		
