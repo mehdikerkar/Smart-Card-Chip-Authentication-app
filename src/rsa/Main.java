@@ -6,9 +6,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		RSAFrame j = new RSAFrame();
-		j.setLocation(300, 300);
-		j.setVisible(true);
+		String s = "dd";
+		byte[] b = s.getBytes();
+		System.out.println(new String(b));
 
 	}
 

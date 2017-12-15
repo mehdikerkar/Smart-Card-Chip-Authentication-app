@@ -3,7 +3,16 @@ package interfaces;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import process.BandElectronicCardSim;
+import process.BandElectronicCardSim.Bank;
+import process.BandElectronicCardSim.CertificatAuthentification;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 import javafx.animation.*;
 
 public class HomeController {
@@ -12,20 +21,68 @@ public class HomeController {
 	
 	@FXML private TextField text;
 	@FXML private Button button;
-	@FXML private ImageView img;
 	@FXML private ComboBox<String> carteType;
 	@FXML private TextField name;
 	@FXML private TextField surname;
 	@FXML private TextField pin;
 	@FXML private TextField CN;
+	@FXML private ImageView CA;
+	@FXML private ImageView bank;
+	@FXML private ImageView card;
+	
 	
 	@FXML
 	private void initialize() {
 		carteType.getSelectionModel().select(0);
-		System.out.println("aaaaaaaaaa");
+		try {
+			BandElectronicCardSim band = new BandElectronicCardSim();
+			Bank b = band.new Bank();
+			CertificatAuthentification c = band.new CertificatAuthentification();
+			
+		} catch (Exception e) {
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Error");
+			a.setHeaderText(e.getMessage());
+			a.showAndWait();
+		}
+		
+		
+		CA.setOnMouseClicked((event)->{
+			System.out.println("a");
+			Alert a = new Alert(AlertType.ERROR);
+			a.setTitle("Error");
+			a.setHeaderText("error");
+			a.showAndWait();
+			
+		});
+		
+		bank.setOnMouseClicked((event)->{
+			System.out.println("b");
+			if(name.getText() != null && surname.getText() != null && pin.getText() != null) {
+				try {
+					BandElectronicCardSim band = new BandElectronicCardSim();
+					Bank b = band.new Bank();
+					CertificatAuthentification c = band.new CertificatAuthentification();
+					
+					b.createCard(name.getText(), pin.getText(), c);
+					
+					
+				} catch (Exception e) {
+					Alert a = new Alert(AlertType.ERROR);
+					a.setTitle("Error");
+					a.setHeaderText(e.getMessage());
+					a.showAndWait();
+				}
+			}
+		});
+
+		card.setOnMouseClicked((event)->{
+			System.out.println("c");
+		});
+		
 		button.setOnAction((event)->{
 			name.setText("hay!!");
-			translate(200, 100, img);
+			translate(200, 100, CA);
 		});
 	}
 	

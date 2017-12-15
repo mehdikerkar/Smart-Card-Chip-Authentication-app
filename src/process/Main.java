@@ -21,7 +21,7 @@ public class Main {
 
 		static private RSAKeys RSAKeyB, RSAKeyCA;	
 	
-		private static bank Bank;
+		private static Bank Bank;
 		private static card Card;
 		private static certifcatAuthentification CA;
 		private static terminalOperator ATM;
@@ -32,20 +32,21 @@ public class Main {
 		
 		static Key Epub,_Epub, Epriv, CApub, CApriv;
 		static ConsoleProgressBar probar;
+		
 	public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeySpecException{
 		
-		//BandElectronicCardSim.Bank name = new Bank();
 		BandElectronicCardSim becs = new BandElectronicCardSim();
 		
 		String nameCard = "Paul Smith";
-		String PIN = "PIN4367",_PIN;
+		String PIN = "PIN4367";
 		Scanner scanIn = new Scanner(System.in);
-		info = nameCard+PIN;
 		
+		info = nameCard+PIN;
 		Bank = becs.new bank();
 		RSAKeyB = new RSAKeys(2048);
 		CA = becs.new certifcatAuthentification();
 		RSAKeyCA= new RSAKeys(2048);
+		
 		// ilfaudrait affichage cration clés
 		
 		//------------------1 creation KeyPair Bank+CA
@@ -154,7 +155,7 @@ public class Main {
 			System.out.println("Enter : The VA is Sure");
 			return true;
 		}else
-			System.out.println("Error : The VA is been hacked");
+			System.out.println("Error : The VA has been hacked");
 			return false;
 	}
 

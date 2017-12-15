@@ -1,7 +1,5 @@
 package process;
 
-import java.security.Key;
-
 public class BandPhysicalProcess {
 	
 	class compt{

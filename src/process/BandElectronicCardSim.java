@@ -3,121 +3,161 @@ package process;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.Key;
-import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import process.BandPhysicalProcess.compt;
+import javax.crypto.spec.SecretKeySpec;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import cryptoAlgorithm.RSA;
 
 
 public class BandElectronicCardSim {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-	}
-
-	    class bank {
-	    	int nBank;
-	        String name;
-	        long caisse;
-	        //ArrayList<compt> compts;
-	        RSAKeys BankKeyPair;
-			int nbr=0;
-			int nbrC=1;
-
-			public RSAKeys getBankKeyPair() {
-				return this.BankKeyPair;
-			}
-			public void setBankKeyPar(RSAKeys bankKeyPair) {
-				this.BankKeyPair = bankKeyPair;
-			}
-			//ArrayList<KeyPair> listbankKeyPair;
+	    public class Bank {
+	    	//cards is a set of cards with there key(public,private)
+	        ArrayList<Map> cards;
 	        
-	        
-	        bank() throws NoSuchAlgorithmException, FileNotFoundException, IOException{
-	        	this.nBank=nbrC;
-	        	this.name="";
-	        	this.caisse=10^12;
-	        	nbr++;
-	        	RSAKeys rsakey = new RSAKeys();
-	            rsakey.generatePaire(2048);
-	            this.BankKeyPair=rsakey;
-	            rsakey.save("Bankc"+nbr,"./Keys");
-	            rsakey.saveBase64("Bankc"+nbr, "./Keys");
+	        public Bank() throws NoSuchAlgorithmException, FileNotFoundException, IOException{
+	        	cards = new ArrayList<Map>();
 	        }
+	        
+	        public boolean createCard(String name, String PIN, CertificatAuthentification cert) throws Exception {
+	        	
+	    		RSAKeys rsa = new RSAKeys(2024);
+	    		Card c = new Card(name, PIN);
+	    		byte[] v = RSA.encrypt(c.getInfo(), rsa.getPrivateKey());
+	    		byte[] ec = cert.createCertification(c, rsa.getPublicKey());
+	    		c.init(v, rsa.getPublicKey(), ec);
+		    	cards.add(new Map(c, rsa));
+		    	return true;
+	        }
+	        
+	        public Key exist(Card c) {
+	    		for(int i = 0; i < cards.size() ; i++) {
+	    			if(cards.get(i).getC().equals(c))
+	    				return cards.get(i).getR().getPublicKey();
+	    		}
+	    		return null;
+	    	}
+	        
 	    }
 	    
 	    
 
-	    class card {
-	    	int nCard;
-	    	int nbr=0;
-	    	String nameHolder;
-	    	Date dateExp;
-	    	String PIN;
-	    	String info;
+	    public class Card {
+	    	private int nCard;
+	    	private int nbr=0;
+	    	private String nameHolder;
+	    	private String PIN;
+	    	private String info;
 
-	    	byte[] VA;
-	    	String VAString;
-	    	Key Epub;
-	    	byte[] Ecert;
+	    	private byte[] VA;
+	    	private Key Epub;
+	    	private byte[] Ecert;
 	    	
-	    	
-	    	SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
-	    	
-	    	card(String name, String PIN, byte[] VA, Key Epub, byte[] Ecert){
+	    	public Card(String name, String PIN){
 	    		nbr++;
-	    		this.nCard=nbr;										//
-	    		this.nameHolder=name;								//     VA
-	    		this.info=nameHolder+PIN+nbr;			//
+	    		this.nCard=nbr;										
+	    		this.nameHolder=name;								
+	    		this.info=nameHolder+PIN+nbr;		
 	    		this.PIN=PIN;
-	    	
-		    	this.Epub=Epub;
-		    	this.Ecert=Ecert;
-	    	}
-	    	public String getinfobyte() {
-	    		return this.info;
-	    	}
-	    }
-
-	    class terminalOperator {
-	    	int nTO;
-	    	String name;
-	    	Key CApub;
-	    	//ArrayList<Key> listCApub;
-	    terminalOperator(int nbr, String name, Key CApub) {
-	    	this.name= name;
-	    	this.nTO=nbr;
-	    	this.CApub=CApub;
-		}
-	    }
-	    class certifcatAuthentification{
-	    	int nCA;
-	    	String name;
-	    	RSAKeys CAKeyPair;
-			int nbr=0;
-	    	//ArrayList<KeyPair> listCAKeyPair;
-	    	
-	    	certifcatAuthentification() throws NoSuchAlgorithmException, FileNotFoundException, IOException{
-	    		RSAKeys rsakey = new RSAKeys();
-	            rsakey.generatePaire(2048);
-	            this.CAKeyPair=rsakey;
-	            nbr++;
-	            rsakey.save("CAc"+nbr,"./Keys");
-	            rsakey.saveBase64("CAc"+nbr, "./Keys");
 	    	}
 	    	
-	    	public RSAKeys getCAKeyPair() {
-				return this.CAKeyPair;
+	    	public String getNameHolder() {
+				return nameHolder;
 			}
-			public void setCAKeyPar(RSAKeys CAKeyPair) {
-				this.CAKeyPair = CAKeyPair;
+
+			public String getPIN() {
+				return PIN;
 			}
+
+			public byte[] getVA() {
+				return VA;
+			}
+
+			public Key getEpub() {
+				return Epub;
+			}
+
+			public void init(byte[] v, Key e , byte[] ec) {
+	    		VA = v;
+	    		Epub =e ;
+	    		Ecert = ec;
+	    	}
+	    	
+	    	public boolean verifierPIN(String PIN) {
+	    		return this.PIN.equals(PIN);
+	    	}
+	    	
+	    	public String getInfo() {
+				return info;
+			}
+
+
+
+			public byte[] getEcert() {
+				return Ecert;
+			}
+			
+			public boolean equals(Card c) {
+				return this.nCard == c.getnCard();
+			}
+
+			public int getnCard() {
+				return nCard;
+			}
+			
 	    }
 
-
+	    public class TerminalOperator {
+	    	
+	    	CertificatAuthentification authorety;
+	    	
+	    	public TerminalOperator(CertificatAuthentification c) {
+	    		authorety = c;
+			}
+	    	
+	    	
+	    	public boolean verifierInfo(Card c) throws Exception {
+	    		Key Cpub = authorety.exist(c);
+	    		if(Cpub != null) {
+	    			String EpubS = RSA.decrypt(c.getEcert(), Cpub);
+	    			Key Epub = new SecretKeySpec(Base64.decode(EpubS),0,Base64.decode(EpubS).length,"RSA");
+	    			String info = RSA.decrypt(c.getVA(), Epub);
+	    			if(info.equals(c.getInfo())) {
+	    				return true;
+	    			}return false;
+	    		} throw new Exception("Error: card note authorized");
+	    	}
+	    	
+	    	
+	    	
+	    }
+	    public class CertificatAuthentification{
+	    	
+	    	private ArrayList<Map> keys;
+	    	
+	    	public CertificatAuthentification() throws NoSuchAlgorithmException, FileNotFoundException, IOException{
+	    		keys = new ArrayList<Map>();
+	    	}
+	    	
+	    	public byte[] createCertification(Card c,Key Epub) throws Exception {
+	    		if(this.exist(c)==null) {
+	    			RSAKeys rsa = new RSAKeys(2024);
+		    		keys.add(new Map(c, rsa));
+		    		return RSA.encrypt(Base64.encode(Epub.getEncoded()), rsa.getPrivateKey());
+	    		}else throw new Exception("Card all ready exist");
+	    		
+	    	}
+	    	
+	    	public Key exist(Card c) {
+	    		for(int i = 0; i < keys.size() ; i++) {
+	    			if(keys.get(i).getC().equals(c))
+	    				return keys.get(i).getR().getPublicKey();
+	    		}
+	    		return null;
+	    	}
+	    }
 }
