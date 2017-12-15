@@ -304,7 +304,6 @@ public class MyRSAKeys {
          System.out.println(rsakey.getBase64PublicKeyRepresentation());
          rsakey.save("test","./Keys");
 */
-
         // // ___________________________________loading test__________________________________
     	
          RSAKeys rsakey = new RSAKeys("test", "./Keys");//load private and public keys from files .key and .pub.key
