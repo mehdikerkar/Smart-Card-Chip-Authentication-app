@@ -23,7 +23,7 @@ public class BandElectronicCardSim {
 	        	cards = new ArrayList<Map>();
 	        }
 	        
-	        public boolean createCard(String name, String PIN, CertificatAuthentification cert) throws Exception {
+	        public Card createCard(String name, String PIN, CertificatAuthentification cert) throws Exception {
 	        	
 	    		RSAKeys rsa = new RSAKeys(2024);
 	    		Card c = new Card(name, PIN);
@@ -31,7 +31,7 @@ public class BandElectronicCardSim {
 	    		byte[] ec = cert.createCertification(c, rsa.getPublicKey());
 	    		c.init(v, rsa.getPublicKey(), ec);
 		    	cards.add(new Map(c, rsa));
-		    	return true;
+		    	return c;
 	        }
 	        
 	        public Key exist(Card c) {
@@ -61,7 +61,7 @@ public class BandElectronicCardSim {
 	    		nbr++;
 	    		this.nCard=nbr;										
 	    		this.nameHolder=name;								
-	    		this.info=nameHolder+PIN+nbr;		
+	    		this.info=nCard+nameHolder;		
 	    		this.PIN=PIN;
 	    	}
 	    	
@@ -107,6 +107,10 @@ public class BandElectronicCardSim {
 
 			public int getnCard() {
 				return nCard;
+			}
+			
+			public String toString() {
+				return nCard+nameHolder;
 			}
 			
 	    }

@@ -7,17 +7,21 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import process.BandElectronicCardSim;
 import process.BandElectronicCardSim.Bank;
+import process.BandElectronicCardSim.Card;
 import process.BandElectronicCardSim.CertificatAuthentification;
-
+import sun.swing.StringUIClientPropertyKey;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.animation.*;
 
 public class HomeController {
 	
-	
+	BandElectronicCardSim band = new BandElectronicCardSim();
+	Bank b = null;
+	CertificatAuthentification c = null;
+	Card carde = null;
 	
 	@FXML private TextField text;
 	@FXML private Button button;
@@ -34,18 +38,6 @@ public class HomeController {
 	@FXML
 	private void initialize() {
 		carteType.getSelectionModel().select(0);
-		try {
-			BandElectronicCardSim band = new BandElectronicCardSim();
-			Bank b = band.new Bank();
-			CertificatAuthentification c = band.new CertificatAuthentification();
-			
-		} catch (Exception e) {
-			Alert a = new Alert(AlertType.ERROR);
-			a.setTitle("Error");
-			a.setHeaderText(e.getMessage());
-			a.showAndWait();
-		}
-		
 		
 		CA.setOnMouseClicked((event)->{
 			System.out.println("a");
@@ -58,21 +50,25 @@ public class HomeController {
 		
 		bank.setOnMouseClicked((event)->{
 			System.out.println("b");
-			if(name.getText() != null && surname.getText() != null && pin.getText() != null) {
+			if(!name.getText().equals("") && !surname.getText().equals("") && !pin.getText().equals("") 
+					&& pin.getText().chars().allMatch( Character::isDigit )) {
 				try {
-					BandElectronicCardSim band = new BandElectronicCardSim();
-					Bank b = band.new Bank();
-					CertificatAuthentification c = band.new CertificatAuthentification();
-					
-					b.createCard(name.getText(), pin.getText(), c);
-					
-					
+					b = band.new Bank();
+					c = band.new CertificatAuthentification();
+					carde = b.createCard(name.getText()+surname.getText(), pin.getText(), c);
+					carteType.getItems().add(carde.toString());
+					CN.setText(Integer.toString(carde.getnCard()));
 				} catch (Exception e) {
 					Alert a = new Alert(AlertType.ERROR);
 					a.setTitle("Error");
 					a.setHeaderText(e.getMessage());
 					a.showAndWait();
 				}
+			}else {
+				Alert a = new Alert(AlertType.ERROR);
+				a.setTitle("Error");
+				a.setHeaderText("info empty");
+				a.showAndWait();
 			}
 		});
 
@@ -101,5 +97,6 @@ public class HomeController {
 		transition.setToY(y);
 		transition.play();
 	}
+	
 	
 }

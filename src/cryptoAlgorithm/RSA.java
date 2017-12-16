@@ -1,6 +1,10 @@
 package cryptoAlgorithm;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import java.security.*;
 
 /**
@@ -28,16 +32,17 @@ public class RSA {
      * @param plaintext a plaintext string
      * @param key a public RSA key
      * @return ciphertext
+     * @throws NoSuchPaddingException 
+     * @throws NoSuchAlgorithmException 
+     * @throws InvalidKeyException 
+     * @throws BadPaddingException 
+     * @throws IllegalBlockSizeException 
      */
-    public static byte[] encrypt(String plaintext, Key key){
+    public static byte[] encrypt(String plaintext, Key key) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException{
         byte[] ciphertext = null;
-        try {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             ciphertext = cipher.doFinal(plaintext.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return ciphertext;
     }
 
@@ -46,16 +51,16 @@ public class RSA {
      * @param ciphertext an RSA-encrypted byte array
      * @param key a private RSA key
      * @return plaintext
+     * @throws Exception 
+     * @throws NoSuchAlgorithmException 
      */
-    public static String decrypt(byte[] ciphertext, Key key){
+    public static String decrypt(byte[] ciphertext, Key key) throws NoSuchAlgorithmException, Exception{
         byte[] plaintext = null;
-        try {
+        
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, key);
             plaintext = cipher.doFinal(ciphertext);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
         return new String(plaintext);
     }
     
