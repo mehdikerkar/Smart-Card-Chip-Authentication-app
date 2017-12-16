@@ -1,15 +1,23 @@
 package process;
 
 import interfaces.ConsoleProgressBar;
+import interfaces.TextAreaOutputStream;
 
+import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import cryptoAlgorithm.RSA;
 import process.BandElectronicCardSim.bank;
@@ -27,13 +35,27 @@ public class Main {
 		private static terminalOperator ATM;
 		
 		static byte[] VA, _Ecert;
-		static byte[] Ecert;
+		static byte[] Ecert,Ecert1,Ecert2;
 		static String info, _info;
 		
 		static Key Epub,_Epub, Epriv, CApub, CApriv;
 		static ConsoleProgressBar probar;
 	public static void main(String[] args) throws NoSuchAlgorithmException, FileNotFoundException, IOException, InvalidKeySpecException{
-		
+		/*		// Jframe and consol 
+		JFrame frame = new JFrame();
+        frame.add( new JLabel(" Outout" ), BorderLayout.NORTH );
+
+        JTextArea ta = new JTextArea();
+        TextAreaOutputStream taos = new TextAreaOutputStream( ta, 60 );
+        PrintStream ps = new PrintStream( taos );
+        System.setOut( ps );
+        System.setErr( ps );
+        frame.add( new JScrollPane( ta )  );
+        frame.pack();
+        frame.setVisible( true );
+        frame.setSize(800,600);
+      */  
+        
 		//BandElectronicCardSim.Bank name = new Bank();
 		BandElectronicCardSim becs = new BandElectronicCardSim();
 		
@@ -46,13 +68,16 @@ public class Main {
 		RSAKeyB = new RSAKeys(2048);
 		CA = becs.new certifcatAuthentification();
 		RSAKeyCA= new RSAKeys(2048);
-		// ilfaudrait affichage cration clés
 		
-		//------------------1 creation KeyPair Bank+CA
+		
+		// ilfaudrait affichage cration clés OK
+		
+		//------------------1 affectation KeyPair Bank+CA
 		Epub = Bank.getBankKeyPair().getPublicKey();
 		Epriv = Bank.getBankKeyPair().getPrivateKey();
 		CApub = CA.getCAKeyPair().getPublicKey();
 		CApriv = CA.getCAKeyPair().getPrivateKey();
+
 		
 		verificationEKeys(RSAKeyB);//-------------- KeyPairBank Verification
 		verificationCAKeys(RSAKeyCA);//-------------- KeyPairCA Verification
@@ -62,19 +87,20 @@ public class Main {
 		System.out.println("debut encryption");
 		//--------------------------------Encryption
 		VA= RSA.encrypt(info, Epriv);// encryption of info with Epriv
-		System.out.println("debut encryption info");
+		System.out.println("fin encryption info");
 		System.out.println(Epub.getEncoded().length);
+		System.out.println(encoder.encodeToString(Epub.getEncoded()));
 		
+		//String Epub1s = substring(0, (((CharSequence) Epub).length()/2), encoder.encodeToString(Epub.getEncoded()));
+		//String Epub2s = substring((((CharSequence) Epub).length()/2),((CharSequence) Epub).length(), encoder.encodeToString(Epub.getEncoded()));
+		//System.out.println(Epub1s);
+		//System.out.println(Epub2s);
+		//Ecert1 = RSA.encrypt(Epub1s, CApriv);//encryption of Epub with CApriv
+		//Ecert2 = RSA.encrypt(Epub2s, CApriv);
+		Ecert=RSA.encrypt(encoder.encodeToString(Epub.getEncoded()), CApriv);
 		
-		int j=294;
-		while(j!=0) {
-			FileOutputStream out = new FileOutputStream("1st partEpub" + ".txt");
-	        out.write(Epub.getEncoded());
-	        out.close();
-		}
-		
-		
-		//Ecert = RSA.encrypt(encoder.encodeToString(Epub.getEncoded()), CApriv);//encryption of Epub with CApriv
+		System.out.println("");
+		System.out.println("fin encryption Epub");
 		System.out.println("fin encryption");
 		//------------------2 creation and attribution information Card + ATM
 		ATM = becs.new terminalOperator(1, "ATM Sanfransisco", CApub);
@@ -109,6 +135,10 @@ public class Main {
 		}
 		
 		
+	}
+	private static String substring(int i, int j, String encodeToString) {
+		// TODO Auto-generated method stub
+		return encodeToString;
 	}
 	public static boolean verificationEKeys(RSAKeys RSAKeyB) {
 		System.out.println("Verification of generated Key Pair Bank (private,Public)");

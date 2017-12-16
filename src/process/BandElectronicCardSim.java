@@ -47,6 +47,7 @@ public class BandElectronicCardSim {
 	            this.BankKeyPair=rsakey;
 	            rsakey.save("Bankc"+nbr,"./Keys");
 	            rsakey.saveBase64("Bankc"+nbr, "./Keys");
+	            System.out.println("Generation of KeyPaire Bank and saving them in byte and string base64 is Done");
 	        }
 	    }
 	    
@@ -108,6 +109,7 @@ public class BandElectronicCardSim {
 	            nbr++;
 	            rsakey.save("CAc"+nbr,"./Keys");
 	            rsakey.saveBase64("CAc"+nbr, "./Keys");
+	            System.out.println("Generation of KeyPaire CA and saving them in byte and string base64 is Done");
 	    	}
 	    	
 	    	public RSAKeys getCAKeyPair() {
