@@ -5,31 +5,224 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1160.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.HomeController">
    <children>
-      <AnchorPane prefHeight="501.0" prefWidth="165.0" style="-fx-background-color: a9a9a9;">
+      <SplitPane dividerPositions="0.7029411764705882" layoutX="170.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="682.0" prefWidth="990.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <AnchorPane minHeight="30.0" prefHeight="463.0" prefWidth="988.0">
+               <children>
+                  <TabPane minHeight="30.0" prefHeight="476.0" prefWidth="988.0" style="-fx-background-color: 808080;" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab fx:id="tab1" text="Step 1">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="CA" fitHeight="150.0" fitWidth="200.0" layoutX="757.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
+                                       <image>
+                                          <Image url="@../../Image/bank_house1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="bank" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Image/254612-banking.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="card" fitHeight="150.0" fitWidth="200.0" layoutX="357.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="430.0">
+                                       <image>
+                                          <Image url="@../../Image/credit_card_front.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message11" fitHeight="26.0" fitWidth="54.0" layoutX="738.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="167.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message" fitHeight="26.0" fitWidth="54.0" layoutX="169.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message111" fitHeight="26.0" fitWidth="54.0" layoutX="382.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="580.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="tab2" text="Step 2">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="terminal" fitHeight="150.0" fitWidth="200.0" layoutX="681.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="157.0" AnchorPane.topAnchor="100.0">
+                                       <image>
+                                          <Image url="@../../Image/3724269338.288.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="card1" fitHeight="128.0" fitWidth="158.0" layoutX="136.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="116.0">
+                                       <image>
+                                          <Image url="@../../Image/credit_card_front.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message1" fitHeight="26.0" fitWidth="54.0" layoutX="258.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="258.0" AnchorPane.topAnchor="173.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message13" fitHeight="26.0" fitWidth="54.0" layoutX="703.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="173.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="cardF" fitHeight="128.0" fitWidth="158.0" layoutX="100.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/black-card1-300x189.gif" />
+                                       </image>
+                                    </ImageView>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab fx:id="tab3" text="Step 3">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="terminal2" fitHeight="150.0" fitWidth="200.0" layoutX="681.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="157.0" AnchorPane.topAnchor="100.0">
+                                       <image>
+                                          <Image url="@../../Image/3724269338.288.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="card12" fitHeight="128.0" fitWidth="158.0" layoutX="136.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="116.0">
+                                       <image>
+                                          <Image url="@../../Image/credit_card_front.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message133" fitHeight="26.0" fitWidth="54.0" layoutX="258.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="258.0" AnchorPane.topAnchor="173.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message131" fitHeight="26.0" fitWidth="54.0" layoutX="703.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="173.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message132" fitHeight="26.0" fitWidth="54.0" layoutX="457.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="395.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Image/typosquatting-blog.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tab4" text="DDA Step 1">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="757.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
+                                       <image>
+                                          <Image url="@../../Image/bank_house1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="bankDDA" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Image/254612-banking.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="357.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="430.0">
+                                       <image>
+                                          <Image url="@../../Image/credit_card_front.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message21" fitHeight="26.0" fitWidth="54.0" layoutX="741.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="214.49206161499023" AnchorPane.topAnchor="167.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message2" fitHeight="26.0" fitWidth="54.0" layoutX="169.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message211" fitHeight="26.0" fitWidth="54.0" layoutX="382.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="130.0" AnchorPane.rightAnchor="580.0">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tab5" text="DDA Step 2">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="terminal1" fitHeight="150.0" fitWidth="200.0" layoutX="681.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="157.0" AnchorPane.topAnchor="100.0">
+                                       <image>
+                                          <Image url="@../../Image/3724269338.288.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="card11" fitHeight="128.0" fitWidth="158.0" layoutX="136.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="116.0">
+                                       <image>
+                                          <Image url="@../../Image/credit_card_front.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message12" fitHeight="26.0" fitWidth="54.0" layoutX="258.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="message121" fitHeight="26.0" fitWidth="54.0" layoutX="703.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../Image/ddd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="272.0" prefWidth="988.0">
+               <children>
+                  <TextArea fx:id="Text" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="button2" layoutX="912.0" layoutY="14.0" mnemonicParsing="false" text="Clear" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+      <AnchorPane prefHeight="680.0" prefWidth="170.0" style="-fx-background-color: a9a9a9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Accordion layoutY="35.0" prefHeight="466.0" prefWidth="170.0">
+            <Accordion layoutY="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
               <panes>
                 <TitledPane prefHeight="310.0" prefWidth="163.0" text="Card">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;">
                            <children>
                               <Label layoutX="12.0" layoutY="53.0" text="Type of card" AnchorPane.leftAnchor="15.0" />
-                              <Button fx:id="button" layoutX="39.0" layoutY="217.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Button" textFill="#753232">
+                              <Button fx:id="button" layoutX="39.0" layoutY="217.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="88.0" text="Button" textFill="#753232">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
                               </Button>
-                              <ComboBox fx:id="carteType" layoutX="8.0" layoutY="78.0" prefWidth="150.0" visibleRowCount="2" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                              <ComboBox fx:id="carteType" layoutX="20.7" layoutY="78.0" prefHeight="28.0" prefWidth="136.0" visibleRowCount="2" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="22.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -42,13 +235,13 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: a9a9a9;">
                            <children>
-                              <TextField fx:id="name" layoutX="-1.0" layoutY="30.0" prefHeight="26.0" prefWidth="170.0" />
-                              <TextField fx:id="surname" layoutX="-1.0" layoutY="83.0" prefHeight="26.0" prefWidth="170.0" />
+                              <TextField fx:id="name" layoutX="10.0" layoutY="30.0" prefHeight="26.0" prefWidth="145.0" />
+                              <TextField fx:id="surname" layoutX="10.0" layoutY="85.0" prefHeight="26.0" prefWidth="145.0" />
+                              <TextField fx:id="pin" layoutX="10.0" layoutY="137.0" prefHeight="26.0" prefWidth="145.0" />
+                              <TextField fx:id="CN" editable="false" layoutX="10.0" layoutY="189.0" prefHeight="26.0" prefWidth="145.0" />
                               <Label layoutX="14.0" layoutY="14.0" text="Name" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0" />
                               <Label layoutX="14.0" layoutY="67.0" text="Surname" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="56.0" />
                               <Label layoutX="24.0" layoutY="121.0" text="PIN" />
-                              <TextField fx:id="pin" layoutX="-2.0" layoutY="137.0" prefHeight="26.0" prefWidth="170.0" />
-                              <TextField fx:id="CN" editable="false" layoutX="-1.0" layoutY="189.0" prefHeight="26.0" prefWidth="170.0" />
                               <Label layoutX="24.0" layoutY="173.0" text="Card Number" />
                            </children></AnchorPane>
                   </content>
@@ -66,47 +259,6 @@
               </panes>
             </Accordion>
             <Label layoutX="17.0" layoutY="2.0" style="-fx-font-size: 20; -fx-font-family: Tahoma;" text="Configuration" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="170.0" prefHeight="501.0" prefWidth="631.0">
-         <children>
-            <TabPane prefHeight="501.0" prefWidth="631.0" style="-fx-background-color: 808080;" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Step 1">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fx:id="CA" fitHeight="150.0" fitWidth="200.0" layoutX="435.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Image/bank_house1.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="bank" fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Image/254612-banking.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="card" fitHeight="150.0" fitWidth="200.0" layoutX="216.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Image/images.jpeg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab text="Step 2">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: 808080;" />
-                  </content>
-                </Tab>
-                  <Tab text="Step 3">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="620.0" />
-                    </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
          </children>
       </AnchorPane>
    </children>

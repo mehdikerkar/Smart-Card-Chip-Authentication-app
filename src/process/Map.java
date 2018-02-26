@@ -1,12 +1,13 @@
 package process;
 
+import Rsa.Rsa;
 import process.BandElectronicCardSim.Card;
 
 public class Map {
 	private Card c;
-	private RSAKeys r;
+	private Rsa r;
 	
-	public Map(Card card,RSAKeys rsa) {
+	public Map(Card card,Rsa rsa) {
 		c = card;
 		r = rsa;
 	}
@@ -19,11 +20,11 @@ public class Map {
 		this.c = c;
 	}
 
-	public RSAKeys getR() {
+	public Rsa getR() {
 		return r;
 	}
 
-	public void setR(RSAKeys r) {
+	public void setR(Rsa r) {
 		this.r = r;
 	}
 	

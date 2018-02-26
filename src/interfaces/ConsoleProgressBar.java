@@ -19,8 +19,4 @@ public class ConsoleProgressBar {
         System.out.println("] 100%");
         System.out.println("Processing "+etat+" : "+done+"!");
 	}
-	public static void main(String[] args) {
-        ConsoleProgressBar cpb;
-        cpb= new ConsoleProgressBar("authentification","Epub","Wrong",100);
-    }
 }
