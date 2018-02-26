@@ -9,7 +9,6 @@ Le projet contient aussi une simulation de l'exploitation d'une faille dans le p
 Comment l'utiliser ?
 -------------------
 
-1.Pour nous test nous avant utiliser java 1.8.0_131 sous
 1. Ouvrirai le projet avec éclipse (ou autre)
   2. Vous trouverez 3 step pour SDA et 2 pour DDA
     2.1 pour les trois premier (SDA):
