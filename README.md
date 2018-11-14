@@ -22,6 +22,6 @@ CryptoPuce est un programme éducatif qui sert a simuler le fonctionnement des p
    3.2 "Step 2" est identique a SDA "step2"(les mêmes étapes).
 
 
-System utiliser
 
+System utiliser:
 OS="Ubuntu 16.04" JAVA_VERSION="1.8.0_131"
