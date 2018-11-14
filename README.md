@@ -6,7 +6,7 @@ CryptoPuce est un programme éducatif qui sert a simuler le fonctionnement des p
  
  Comment l'utiliser ?
 
-  1. Ouvrirai le projet avec éclipse (ou autre).
+  1. Ouvrire le projet avec eclipse (ou autre).
    
   2. SDA protocol (offline static data authentication) :
     
